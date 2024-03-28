@@ -1,0 +1,14 @@
+#! /bin/bash
+
+buildApp()
+{
+	if (make -C ./Apps)
+	then
+		echo "Application Build Successfully"
+		rm App
+		mv ./Apps/App .
+	else
+		echo "ERROR: Application build failed"
+	fi
+
+}
