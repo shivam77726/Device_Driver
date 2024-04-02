@@ -1,7 +1,7 @@
-/root/CDD_1/initDev.o
-/root/CDD_1/cleanup.o
-/root/CDD_1/openDev.o
-/root/CDD_1/releaseDev.o
-/root/CDD_1/trimDev.o
-/root/CDD_1/writeDev.o
-/root/CDD_1/readDev.o
+/root/CDD/initDev.o
+/root/CDD/cleanup.o
+/root/CDD/openDev.o
+/root/CDD/releaseDev.o
+/root/CDD/trimDev.o
+/root/CDD/writeDev.o
+/root/CDD/readDev.o

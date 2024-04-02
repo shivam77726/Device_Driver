@@ -5,7 +5,7 @@ MODULE_LICENSE("GPL");
 #define MAJORNO 0
 #endif
 #ifndef MINORNO
-#define MINORNO 1
+#define MINORNO 0 
 #endif
 #ifndef DEVSIZE
 #define DEVSIZE 128

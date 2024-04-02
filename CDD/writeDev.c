@@ -4,8 +4,23 @@
 
 ssize_t writeDev(struct file *filep, const char __user *ubuff, size_t nob, loff_t *loff )
 {
+	int noi;
+	//int i, noq;
+	//size_t lsize;
+	Dev* ldev;
 
 	printk(KERN_INFO"%s begin\n",__func__);
+	ldev=filep->private_data;
+
+	if(!ldev)
+	{
+		printk(KERN_ERR"%s ERROR:\n",__func__);
+		return -1;
+	}
+
+	noi=noofReg*regSize;
+
+	
 
 
 

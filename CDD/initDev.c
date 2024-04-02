@@ -2,8 +2,8 @@
 #include "declaration.h"
 #include "fileOper.h"
 
-dev_t DevId;
-int devSize, dataSize, regSize, noofReg, nod,devNo;
+dev_t DevId, devNo;
+int devSize, dataSize, regSize, noofReg, nod;
 int MajorNo=0,MinorNo=0;
 Dev *myDev;
 
@@ -32,7 +32,7 @@ static int __init initDev(void)
 	MajorNo=MAJOR(DevId);
 	//MinorNo=MINOR(DevId);
 
-	printk(KERN_INFO "Major NO: %d,MinorNo:%d\n",MajorNo,MinorNo);
+	printk(KERN_INFO "Major NO: %d\n",MajorNo);
 	myDev=kmalloc(sizeof(Dev)*nod,GFP_KERNEL);
 	if(!myDev)
 	{
@@ -42,7 +42,7 @@ static int __init initDev(void)
 
 	memset(myDev,'\0',sizeof(Dev)*nod);
 	
-	for(int i=1; i<=nod;i++)
+	for(int i=0; i<nod;i++)
 	{
 		cdev_init(&myDev[i].mycdev,&fs);
 
