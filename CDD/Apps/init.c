@@ -1,5 +1,4 @@
-#include "declaration.h"
-
+#define NOF 6
 void* exitApps(void*);
 void* mainMenu(void*);
 void* openDevice(void*);

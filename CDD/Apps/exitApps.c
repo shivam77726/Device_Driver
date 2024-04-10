@@ -14,7 +14,7 @@ void* exitApps(void* arg)
 		if(*flag==0)
 			printf("Success\n");
 		else
-			printf("Failure\n");
+			printf("Failure: exit code %d\n",*flag);
 
 
 #ifdef DEBUG

@@ -5,8 +5,8 @@ buildApp()
 	if (make -C ./Apps)
 	then
 		echo "Application Build Successfully"
-		rm App
-		mv ./Apps/App .
+		rm app
+		mv ./Apps/app .
 	else
 		echo "ERROR: Application build failed"
 	fi

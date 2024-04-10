@@ -10,7 +10,7 @@ int main()
 	init();
 	while(1)
 	{
-		fptr[0]((void*)&i);		//MainMenu
+		fptr[0]((void*)0);		//MainMenu
 	}
 
 

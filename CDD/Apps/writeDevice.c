@@ -6,7 +6,6 @@ void* writeDevice(void* arg)
 #ifdef DEBUG
 	printf("%s Begin\n",__func__);
 #endif
-	printf("LINE:%d\n",__LINE__);
 
 	ret=write(fd,"Hello Kernel",13);
 	if(ret==-1)

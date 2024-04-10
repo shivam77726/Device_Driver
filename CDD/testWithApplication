@@ -2,7 +2,7 @@
 
 testWithApplication()
 {
-	if (./App)
+	if (./app)
 	then
 		echo "Script: App run Successfully"
 	else

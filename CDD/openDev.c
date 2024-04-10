@@ -1,6 +1,5 @@
 #include "headers.h"
 #include "declaration.h"
-//#include "fileOper.h"
 
 int openDev(struct inode *pnode, struct file *pfile)
 {
@@ -24,6 +23,11 @@ int openDev(struct inode *pnode, struct file *pfile)
 			printk(KERN_INFO"ERROR:trimDev()\n");
 			goto OUT;
 		}
+		printk(KERN_INFO"File OPening in write mode\n");
+	}
+	if((pfile->f_flags & O_ACCMODE)==O_RDONLY)
+	{
+		printk(KERN_INFO"File OPening in read mode\n");
 	}
 	pfile->private_data=ldev;
 

@@ -5,3 +5,4 @@
 /root/CDD/trimDev.o
 /root/CDD/writeDev.o
 /root/CDD/readDev.o
+/root/CDD/createScull.o

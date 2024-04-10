@@ -1,4 +1,6 @@
 MODULE_LICENSE("GPL");
+MODULE_AUTHOR("Shivam Gupta");
+MODULE_DESCRIPTION("This is my first Character Device Driver");
 
 
 #ifndef MAJORNO
@@ -56,4 +58,4 @@ int releaseDev(struct inode*, struct file*);
 int trimDev(Dev*);
 ssize_t writeDev(struct file*, const char __user*, size_t, loff_t*);
 ssize_t readDev(struct file*, char __user*, size_t, loff_t*);
-
+Qset* createScull(Dev*, size_t);
