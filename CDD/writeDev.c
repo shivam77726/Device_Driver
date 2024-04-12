@@ -40,7 +40,7 @@ ssize_t writeDev(struct file *filep, const char __user *ubuff, size_t nob, loff_
 			printk(KERN_INFO"%s: Partial Written\n",__func__);
 		}
 		w+=r-ret;
-		if((i%ldev->noofReg-1)==0)
+		if(((i+1)%ldev->noofReg)==0)
 		{
 			item=item->next;
 			i=0;

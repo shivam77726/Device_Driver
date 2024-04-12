@@ -23,7 +23,7 @@ static int __init initDev(void)
 	regSize=REGSIZE;
 	noofReg=NOOFREG;
 
-	ret=alloc_chrdev_region(&DevId,MinorNo,nod,"MyDevice");
+	ret=alloc_chrdev_region(&DevId,MinorNo,nod,"MyDevice1");
 	if(ret==-1)
 	{
 		printk(KERN_ERR"Not Registered\n");
