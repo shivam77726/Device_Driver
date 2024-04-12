@@ -1,0 +1,1 @@
+savedcmd_/root/BDD/mybdd.ko := ld -r -m elf_x86_64 -z noexecstack --build-id=sha1  -T scripts/module.lds -o /root/BDD/mybdd.ko /root/BDD/mybdd.o /root/BDD/mybdd.mod.o;  make -f ./arch/x86/Makefile.postlink /root/BDD/mybdd.ko
