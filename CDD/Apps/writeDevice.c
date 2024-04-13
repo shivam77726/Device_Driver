@@ -2,12 +2,13 @@
 #include "declaration.h"
 void* writeDevice(void* arg)
 {
-	int ret;
+	int ret,len;
+	char buff[200]="Hello Kernel";
 #ifdef DEBUG
 	printf("%s Begin\n",__func__);
 #endif
-
-	ret=write(fd,"Hello Kernel",13);
+	len=strlen(buff);
+	ret=write(fd,buff,len);
 	if(ret==-1)
 	{
 		perror("File write");
