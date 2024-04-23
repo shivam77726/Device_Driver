@@ -1,0 +1,5 @@
+BDD/modules
+CDD/modules
+CDD_completion/modules
+CDD/Apps/*.o
+CDD_completion/Apps/*.o
