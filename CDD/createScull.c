@@ -70,21 +70,24 @@ Qset* createScull(Dev* ldev, size_t size)
 	if(size%ldev->regSize)
 		noq++;
 
-	for(int i=count=0; i<noq;i++, count++)
+	printk(KERN_INFO"noq:%d\n",noq);
+	for(int i=count=0; i<noq;i++)
 	{
+		printk(KERN_INFO"%d count:%d i:%d\n",__LINE__,count,i);
 		temp->data[count]=(char*)kmalloc(sizeof(char)*ldev->regSize,GFP_KERNEL);
                 if(!temp->data[count])
                 {
                         printk(KERN_ERR"Reg size of data\n");
                         goto OUT;
                 }
-		memset(*(temp->data),'\0',ldev->regSize);	
+		memset(*(temp->data),'\0',ldev->regSize);
+		count++;	
 		if(count>7)
 		{
 			temp=temp->next;
 			count=0;
 		}
-
+		printk(KERN_INFO"count:%d,i:%d\n",count,i);
 
 	}
 	

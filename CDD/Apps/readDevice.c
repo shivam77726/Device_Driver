@@ -3,12 +3,12 @@
 void* readDevice(void* arg)
 {
 	int ret;
-	unsigned char buff[15];
+	unsigned char buff[100];
 #ifdef DEBUG
 	printf("%s Begin\n",__func__);
 #endif
-	memset(buff,'\0',15);
-	ret=read(fd,buff,15);
+	memset(buff,'\0',100);
+	ret=read(fd,buff,100);
 	if(ret==-1)
 	{
 		perror("File Open");

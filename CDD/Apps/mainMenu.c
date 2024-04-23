@@ -10,22 +10,17 @@ void* mainMenu(void* arg)
 	printf("%s Begin\n",__func__);
 #endif
 
-//	printf("Enter Character:");
-//	scanf("%s",&c);
-
 	printf("___MainMenu___\n");
 	printf("0.Exit App\n");
 	printf("1.Open Device\n");
 	printf("2.Write into Device\n");
 	printf("3.Read from Device\n");
 	printf("4.Release Device\n");
+	printf("5.Seek Device\n");
 	printf("Enter Choice:");
 	scanf("%d",&choice);
 
 	printf("Choice:%d\n",choice);
-//	printf("Enter Character:");
-//	scanf("%c",&c);
-//	printf("Choice:%d\n",choice);
 	if(choice==0)
 		flag=0;
 	fptr[choice+1]((void*)&flag);
@@ -37,7 +32,8 @@ void* mainMenu(void* arg)
 		fptr[1]((void*)&flag);		//exit apps
 	}*/
 	
-
+	if(choice>5 || choice <0)
+		printf("Enter Valid Choice\n");
 
 #ifdef DEBUG
 	printf("%s End.\n",__func__);

@@ -7,11 +7,11 @@ ssize_t readDev(struct file *filep, char __user *ubuff, size_t nob, loff_t *loff
 	size_t lsize=0;
         Dev* ldev=NULL;
         Qset* item=NULL;
-        int i,r,ret,noctr;
+        int i,r,ret,noctr,offset;
 	char buff[4];
 
 	printk(KERN_INFO"%s begin\n",__func__);
-
+	printk(KERN_INFO"FilePosition:%ld\n",(long)filep->f_pos);
 	ldev=filep->private_data;
         if(!ldev)
         {
@@ -24,26 +24,34 @@ ssize_t readDev(struct file *filep, char __user *ubuff, size_t nob, loff_t *loff
         if(nob > ldev->dataSize)
         	lsize=ldev->dataSize;
 
-        i=r=0;
-        noctr=lsize;
+	lsize=lsize - filep->f_pos;
+        
+	i=filep->f_pos/ldev->regSize;
+	offset=filep->f_pos%ldev->regSize;
+	r=0;
+	noctr=ldev->regSize-offset;
+	if(down_interruptible(&ldev->sem))
+                return -ERESTARTSYS;
 	item=ldev->first;
         if(item==NULL)
         {
                 printk(KERN_ERR"Quantum memory not available\n");
+		up(&ldev->sem);
                 return 0;
         }
-	
+	//dataSize=dataSize - pfile->f_pos;
         while(noctr)
         {
                 if(noctr>=ldev->regSize)
                         noctr=ldev->regSize;
 		printk(KERN_INFO"Line:%d dataSize:%d noctr:%d r:%d i:%d\n",__LINE__,dataSize,noctr,r,i);
 		
-		ret=copy_to_user(ubuff+r, item->data[i], noctr);
+		ret=copy_to_user(ubuff+r, item->data[i]+offset, noctr);
 		if(ret>0)
 		{
 			printk(KERN_INFO"%s: Partial Read %d\n",__func__,ret);
 		}
+		offset=0;
 		r+=noctr-ret;
 		for(int j=0;j<noctr;j++)
 			buff[j]=*(char*)(item->data[i]+j);
@@ -56,12 +64,14 @@ ssize_t readDev(struct file *filep, char __user *ubuff, size_t nob, loff_t *loff
                 else
                         i++;
                 dataSize-=r;
+
                 noctr=lsize-r;
 		printk(KERN_INFO"dataSize:%d noctr:%d r:%d i:%d\n",dataSize,noctr,r,i);
         }
-        ldev->dataSize=dataSize;
-	
+        dataSize=ldev->dataSize;
+	up(&ldev->sem);
 	printk(KERN_INFO"dataSize:%d \n",ldev->dataSize);
+	printk(KERN_INFO"FilePosition:%ld\n",(long)filep->f_pos);
 	printk(KERN_INFO"%s End\n",__func__);
 	return r;
 	

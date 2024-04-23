@@ -3,7 +3,7 @@
 void* writeDevice(void* arg)
 {
 	int ret,len;
-	char buff[200]="Hello Kernel";
+	char buff[200]="Hello Kernel i am writing characters";
 #ifdef DEBUG
 	printf("%s Begin\n",__func__);
 #endif
