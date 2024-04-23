@@ -1,0 +1,12 @@
+#! /bin/bash
+
+testWithApplication()
+{
+	if (./app)
+	then
+		echo "Script: App run Successfully"
+	else
+		echo "ERROR: App run failed"
+	fi
+
+}

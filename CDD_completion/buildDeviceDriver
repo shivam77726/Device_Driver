@@ -1,0 +1,12 @@
+#! /bin/bash
+
+buildDeviceDriver()
+{
+	if (make)
+	then
+		echo "Device Driver Build Successfully"
+	else
+		echo "ERROR: Device Driver build failed"
+	fi
+
+}

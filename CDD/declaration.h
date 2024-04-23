@@ -50,6 +50,7 @@ typedef struct dev
 	int regSize;
 	int noofReg;
 	struct cdev mycdev;
+	struct semaphore sem;
 
 }Dev;
 
@@ -58,4 +59,5 @@ int releaseDev(struct inode*, struct file*);
 int trimDev(Dev*);
 ssize_t writeDev(struct file*, const char __user*, size_t, loff_t*);
 ssize_t readDev(struct file*, char __user*, size_t, loff_t*);
+loff_t lseekDev(struct file *, loff_t, int);
 Qset* createScull(Dev*, size_t);
