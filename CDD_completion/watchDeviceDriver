@@ -1,0 +1,14 @@
+#! /bin/bash
+
+watchDeviceDriver()
+{
+	dmesg
+	read
+	lsmod
+	read
+	cat /proc/devices
+	read
+	cat /proc/modules
+	read
+
+}
