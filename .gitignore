@@ -1,3 +1,6 @@
+BDD/modules
+CDD_completion/modules
+CDD_completion/Apps/*.o
 CDD/*.o
 CDD/modules
 CDD/modules.order
@@ -25,4 +28,3 @@ CDD/Apps/.openDevice.c.swp
 CDD/Apps/.readDevice.c.swp
 CDD/Apps/.releaseDevice.c.swp
 CDD/Apps/.writeDevice.c.swp
-
