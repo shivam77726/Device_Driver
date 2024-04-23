@@ -5,7 +5,7 @@ CROSS_COMPILE=x86_64-linux-gnu-
 
 ifneq (${KERNELRELEASE},)
 	obj-m := mycdd.o
-mycdd-objs := initDev.o cleanup.o openDev.o releaseDev.o trimDev.o writeDev.o readDev.o createScull.o lseekDev.o
+mycdd-objs := initDev.o cleanup.o openDev.o releaseDev.o trimDev.o writeDev.o readDev.o createScull.o
 
 else
 #	KERNELDIR ?= /lib/modules/4.13.12/build

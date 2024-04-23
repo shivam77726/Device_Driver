@@ -17,9 +17,6 @@ int openDev(struct inode *pnode, struct file *pfile)
 
 	if((pfile->f_flags & O_ACCMODE)==O_WRONLY)
 	{
-		if(down_interruptible(&ldev->sem))
-                	return -ERESTARTSYS;
-		
 		int ret =trimDev(ldev);
 		if(ret==-1)
 		{
@@ -27,7 +24,6 @@ int openDev(struct inode *pnode, struct file *pfile)
 			goto OUT;
 		}
 		printk(KERN_INFO"File OPening in write mode\n");
-		up(&ldev->sem);
 	}
 	if((pfile->f_flags & O_ACCMODE)==O_RDONLY)
 	{

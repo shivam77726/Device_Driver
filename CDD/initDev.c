@@ -50,7 +50,6 @@ static int __init initDev(void)
 		myDev[i].dataSize=dataSize;
 		myDev[i].regSize=regSize;
 		myDev[i].noofReg=noofReg;
-		sema_init(&myDev[i].sem,1);
 		devNo=MKDEV(MajorNo,i);
 				
 		ret=cdev_add(&myDev[i].mycdev,devNo,1);

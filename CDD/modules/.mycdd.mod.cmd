@@ -1,1 +1,0 @@
-savedcmd_/root/CDD/mycdd.mod := printf '%s\n'   initDev.o cleanup.o openDev.o releaseDev.o trimDev.o writeDev.o readDev.o createScull.o lseekDev.o | awk '!x[$$0]++ { print("/root/CDD/"$$0) }' > /root/CDD/mycdd.mod

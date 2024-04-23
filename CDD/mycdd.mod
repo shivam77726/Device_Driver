@@ -6,4 +6,3 @@
 /root/CDD/writeDev.o
 /root/CDD/readDev.o
 /root/CDD/createScull.o
-/root/CDD/lseekDev.o

@@ -4,8 +4,8 @@ cc=gcc
 CF=-c -lpthread
 DF=-DDEBUG
 
-app: main.o mainMenu.o init.o openDevice.o writeDevice.o readDevice.o releaseDevice.o exitApps.o seekDevice.o
-	${cc} -o app main.o mainMenu.o init.o openDevice.o writeDevice.o readDevice.o releaseDevice.o exitApps.o seekDevice.o
+app: main.o mainMenu.o init.o openDevice.o writeDevice.o readDevice.o releaseDevice.o exitApps.o 
+	${cc} -o app main.o mainMenu.o init.o openDevice.o writeDevice.o readDevice.o releaseDevice.o exitApps.o
 
 main.o: main.c headers.h declaration.h
 	${cc} ${CF} ${DF} main.c
@@ -21,8 +21,6 @@ readDevice.o: readDevice.c headers.h declaration.h
 	${cc} ${CF} ${DF} readDevice.c
 releaseDevice.o: releaseDevice.c headers.h declaration.h
 	${cc} ${CF} ${DF} releaseDevice.c
-seekDevice.o: seekDevice.c headers.h declaration.h
-	${cc} ${CF} ${DF} seekDevice.c
 exitApps.o: exitApps.c headers.h declaration.h
 	${cc} ${CF} ${DF} exitApps.c
 

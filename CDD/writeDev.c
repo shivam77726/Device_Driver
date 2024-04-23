@@ -9,7 +9,6 @@ ssize_t writeDev(struct file *filep, const char __user *ubuff, size_t nob, loff_
 	int i,w,ret,r;
 	char buff[4];
 	printk(KERN_INFO"%s begin\n",__func__);
-	printk(KERN_INFO"FilePosition:%ld\n",(long)filep->f_pos);
 	ldev=filep->private_data;
 	if(!ldev)
 	{
@@ -20,8 +19,7 @@ ssize_t writeDev(struct file *filep, const char __user *ubuff, size_t nob, loff_
 	lsize=nob;
 	if(nob>= ldev->devSize)
 		lsize=ldev->devSize;
-	if(down_interruptible(&ldev->sem))
-		return -ERESTARTSYS;	
+	
 	item=ldev->first=createScull(ldev,lsize);
 	
 	i=w=0;
@@ -30,7 +28,6 @@ ssize_t writeDev(struct file *filep, const char __user *ubuff, size_t nob, loff_
 	if(item==NULL)
 	{
 		printk(KERN_ERR"Quantum memory not allocated\n");
-		up(&ldev->sem);
 		return w;
 	}
 
@@ -50,19 +47,8 @@ ssize_t writeDev(struct file *filep, const char __user *ubuff, size_t nob, loff_
 	
 		if(((i+1)%ldev->noofReg)==0)
 		{
-			
 			item=item->next;
-			if(!item)
-			{
-				printk(KERN_INFO"item next is NULL\n");
-				break;
-			}	
 			i=0;
-			if(!item->data[i])
-			{
-				printk(KERN_INFO"item data is NULL\n");
-				break;
-			}
 		}
 		else
 			i++;
@@ -70,9 +56,7 @@ ssize_t writeDev(struct file *filep, const char __user *ubuff, size_t nob, loff_
 		r=lsize-w;
 	}
 	ldev->dataSize=dataSize;
-	filep->f_pos=filep->f_pos + w;
-	up(&ldev->sem);
-	printk(KERN_INFO"FilePosition:%ld\n",(long)filep->f_pos);
+
 	printk(KERN_INFO"%s End\n",__func__);
 	return w;
 	
