@@ -1,8 +1,11 @@
 INSTALL_DIR=modules
+
+
+CROSS_COMPILE=""
+
 ifneq (${KERNELRELEASE},)
 	obj-m := mybdd.o
-
-mybdd-objs := initDev.o cleanup.o 
+mybdd-objs := initDev.o cleanup.o
 
 else
 #	KERNELDIR ?= /lib/modules/4.13.12/build
@@ -10,7 +13,7 @@ else
 #	@echo "Kernel DIR:$(KERNELDIR)"
 	PWD := $(shell pwd)
 default:
-	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
+	$(MAKE) CROSS_COMPILE=$(CROSS_COMPILE) -C $(KERNELDIR) M=$(PWD) modules
 	rm -rf ${INSTALL_DIR}
 	mkdir ${INSTALL_DIR}
 	mv -f *.o *.ko *.mod.c .*.cmd ${INSTALL_DIR}

@@ -3,8 +3,10 @@
 static void __exit cleanup(void)
 {
 	printk(KERN_INFO "Bye Kernel %s Begin\n",__func__);
-	
-	unregister_blkdev(majorno,DevName);
+
+	vfree(dev->data);
+	kfree(dev);	
+	unregister_blkdev(majorno,DEVNAME);
 
 	printk(KERN_INFO "Bye Kernel %s End\n",__func__);
 }
